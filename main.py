@@ -31,6 +31,8 @@ def masterProgram():
 
 def main():
     # Print to the output panel in Visual Studio Code to show the program has started
+    RobotName = os.popen("cat /etc/hostname").read()
+    print("Using robot: %s" % (RobotName), file=sys.stderr)
     print("Starting main()", file=sys.stderr)
 
     sound.set_volume(pct=40)
@@ -41,6 +43,7 @@ def main():
     BackMotorSetup()
 
     # Always have exactly ONE of the next two lines uncommented OR ELSE the bot will do nothing.
+    
     # runSelected()   # Uncomment this line when you only want to work on your Run without using the MasterProgram
     masterProgram()  # Uncomment this line when you want to run MasterProgram
 

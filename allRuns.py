@@ -10,143 +10,94 @@ from time import sleep, time
 from defineRobot import *
 from myBlocks import *
 
+
+
+
 def Trun1A():
-    motorStall('A', 15, 12)
-    motorStall('D', 7, 5)
+    motorStall('A', -25, -10)
+    # FrontMotor.off(brake=False)
+    FrontMotor.on_for_degrees(10, 10, True)
+    motorStall('D', -10, -5)
 
 def Trun1B():
-    motorStall('A', -10, -7)
+    motorStall('A', 25, 10)
 
 def Run1_Thread():
     if (True):
-
-        #########################################################
-        # RUN 1: 45 Points
-        #########################################################
-
-        #####
-        # M11: Hydroelectric Dam - 20 Points
-        #####
-        run1A = Thread(target=Trun1A)
-        run1A.start()
-        driveStraight(30, 390, True)
-        motorStall('A', -20, -15)
-        driveStraight(-10, 40, True)
-        run1B = Thread(target=Trun1B)
-        run1B.start()
-        driveStraight(20, 70, True)
-
-        #####
-        # M10: Power Plant - 25 Points
-        #####
-        driveStraight(-25, 55, True)
-        twoWheelTurn('Right', 170, 3500, 70)
-        driveStraight(35, 100, False)
-        driveStraight(45, 100, False)
-        driveStraight(50, 700, False)
-        lineSquare(15, 'Black', 'Right', 0.2)
-        lineSquare(15, 'White', 'Left', 0.15)
-        WheelShutdown()
-        twoWheelTurn('Right', 170, 3500, 170)
-        lineSquare(15, 'Black', 'Left', 0.25)
-        lineSquare(-15, 'White', 'Right', 0.15)
-        lineSquare(15, 'Black', 'Left', 0.1)
-        driveStraight(30, 30, True)
-        WheelShutdown()
-        sleep(0.1)
-        FrontMotor.on_for_degrees(95, 125)
-        motorStall('A', 15, 12)
-        driveStraight(-10, 15, True)
-        LWheel.on_for_degrees(-15, 45, True)
-        WheelShutdown()
-        FrontMotor.on_for_degrees(-35, 100)
-        sleep(0.6)
-        FrontMotorShutdown()
-
-        #####
-        # M05: Smart Grid - 20 points (30 points if other team raises their hand)
-        #####
-        LWheel.on_for_degrees(15, 45, True)
-        WheelShutdown()
-        driveStraight(20, 20, True)
-        lineSquare(-15, 'White', 'Left', 0.3)
-        lineSquare(15, 'Black', 'Right', 0.2)
-        lineSquare(-15, 'White', 'Left', 0.2)
-        # driveStraight(-45, 870, True)
-        driveStraight(-40, 100, False)
-        driveStraight(-50, 760, True)
-        motorStall('D', -20, -17)
-        driveStraight(15, 100, True)
-        BackMotor.on_for_degrees(30, 50)
-        BackMotorShutdown()
-        driveStraight(80, 400, True)
-        RWheel.on_for_degrees(35, 260, True)
-        driveStraight(80, 1800, True)
-        WheelShutdown()
-
-        # Return to masterProgram(), reset display
-        PrintRunNumbersToDisplay()
-
-
-def Trun2A():
-    motorStall('A', -25, -10)
-    motorStall('D', -10, -7)
-
-def Trun2B():
-    motorStall('A', 25, 10)
-
-def Run2_Thread():
-    if (True):
         
+        RobotName = os.popen("cat /etc/hostname").read()
+        print("Using robot: %s" % (RobotName), file=sys.stderr)
         #########################################################
-        # RUN 2: ?? Points
+        # RUN 1: ?? Points
         #########################################################
 
         #####
         # M08: Watch Television - 20 points
         #####
-        run2A = Thread(target=Trun2A)
-        run2A.start()
-        driveStraight(35, 580, False)
+        run1A = Thread(target=Trun1A)
+        run1A.start()
+        driveStraight(20, 50, False)
+        driveStraight(40, 530, False)
         driveStraight(20, 70, True)
         
-
         #####
         # M07: Wind Turbine - 30 points
         #####
-        driveStraight(-25, 110, True)
-        run2B = Thread(target=Trun2B)
-        run2B.start()
-        RWheel.on_for_degrees(25, 195)
+        driveStraight(-25, 100, True)
+        run1B = Thread(target=Trun1B)
+        run1B.start()
+        if (RobotName == "ASHBOT"):
+            # RWheel.on_for_degrees(25, 195)
+            oneWheelTurn('Right', 200, 2000, 185)
+        else:
+            # RWheel.on_for_degrees(25, 175)
+            oneWheelTurn('Right', 200, 2000, 175)
         RWheelShutdown()
         driveStraight(35, 430, False)
         lineDetect(15, 3, "Black", False)
-        lineDetect(15, 3, "White", True)
-        LWheel.on_for_degrees(25, 337, True)
-        # LWheelShutdown()
-        driveStraight(-25, 60, True)
+        lineDetect(15, 3, "White", False)
+        driveStraight(20, 40, True)
+        if (RobotName == "ASHBOT"):
+            LWheel.on_for_degrees(25, 337, True)
+        else:
+            # LWheel.on_for_degrees(25, 337, True)
+            oneWheelTurn('Left', 200, 2000, 350)
+        WheelShutdown()
+        driveStraight(-20, 40, True)
         motorStall('A', -25, -10)
-        FrontMotor.off(False)
+        FrontMotor.on_for_degrees(10, 10, True)
         # sleep(0.1)
         # FrontMotor.on_for_degrees(10, 10)
-        driveStraight(35, 280, True)
-        sleep(0.1)
+        driveStraight(20, 280, True)
+        sleep(0.5)
         driveStraight(-20, 90, True)
-        driveStraight(35, 210, True)
-        sleep(0.1)
+        driveStraight(20, 210, True)
+        sleep(0.2)
         driveStraight(-20, 90, True)
-        driveStraight(35, 220, True)
-        sleep(0.1)
+        driveStraight(20, 220, True)
+        sleep(0.2)
         driveStraight(-20, 90, True)
-        driveStraight(35, 230, True)
-        sleep(0.1)
+        driveStraight(20, 230, True)
+        sleep(0.2)
 
-        
         #####
         # M14: Toy Factory - 30 points
         #####
-        driveStraight(-30, 240, True)
+        driveStraight(-20, 50, False)
+        driveStraight(-40, 170, True)
         motorStall('D', 20, 17)
+        BackMotor.off(brake=False)
+        twoWheelTurn('Right', 220, 2000, 300)
+        driveStraight(20, 180, True)
+        motorStall('A', 25, 10)
+        twoWheelTurn('Left', 200, 2000, 165)
+        driveStraight(-20, 50, False)
+        driveStraight(-40, 400, True)
+        oneWheelTurn('Left', 200, 2000, 70)
+        BackMotor.on_for_degrees(-35, 160, True)
+        motorStall('D', 15, 10)
+
+
         '''
         driveStraight(-15, 50, True)
         sleep(0.5)
@@ -160,6 +111,9 @@ def Run2_Thread():
         # Return to masterProgram(), reset display
         # PrintRunNumbersToDisplay()
         
+
+def Run2_Thread():
+    if (True):
 
 
 def Run3_Thread():

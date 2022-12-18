@@ -18,10 +18,5 @@ def runSelected():
         print("Starting runSelected()", file=sys.stderr)
 
         motorStall('A', -25, -10)
-        sleep(1)
-        motorStall('A', 25, 10)
-        sleep(1)
-        motorStall('A', -25, -10)
-        sleep(1)
-        motorStall('A', 25, 10)
-        sleep(1)
+        FrontMotor.off(brake=False)
+        motorStall('D', -10, -7)
