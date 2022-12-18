@@ -115,6 +115,9 @@ def Run1_Thread():
 def Run2_Thread():
     if (True):
 
+        # Return to masterProgram(), reset display
+        PrintRunNumbersToDisplay()
+
 
 def Run3_Thread():
     if (True):
