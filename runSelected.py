@@ -17,6 +17,9 @@ def runSelected():
         # Start coding your Run here
         print("Starting runSelected()", file=sys.stderr)
 
-        motorStall('A', -25, -10)
-        FrontMotor.off(brake=False)
-        motorStall('D', -10, -7)
+        # twoWheelTurn('Left', 230, 3000, 333)
+        # WheelShutdown()
+        # move_steering.on_for_degrees(0, -10, 150, True)
+        # WheelShutdown()
+        sound.play_note("E4", 0.25)
+        

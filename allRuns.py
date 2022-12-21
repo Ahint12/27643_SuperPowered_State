@@ -15,9 +15,9 @@ from myBlocks import *
 
 def Trun1A():
     motorStall('A', -25, -10)
-    # FrontMotor.off(brake=False)
-    FrontMotor.on_for_degrees(10, 10, True)
-    motorStall('D', -10, -5)
+    FrontMotor.on_for_degrees(10, 40, True)
+    FrontMotor.off(brake=False)
+    motorStall('D', -10, -8)
 
 def Trun1B():
     motorStall('A', 25, 10)
@@ -37,8 +37,8 @@ def Run1_Thread():
         run1A = Thread(target=Trun1A)
         run1A.start()
         driveStraight(20, 50, False)
-        driveStraight(40, 530, False)
-        driveStraight(20, 70, True)
+        driveStraight(45, 510, False)
+        driveStraight(20, 80, True)
         
         #####
         # M07: Wind Turbine - 30 points
@@ -47,55 +47,153 @@ def Run1_Thread():
         run1B = Thread(target=Trun1B)
         run1B.start()
         if (RobotName == "ASHBOT"):
-            # RWheel.on_for_degrees(25, 195)
-            oneWheelTurn('Right', 200, 2000, 185)
+            oneWheelTurn('Right', 250, 2000, 210)
         else:
-            # RWheel.on_for_degrees(25, 175)
-            oneWheelTurn('Right', 200, 2000, 175)
-        RWheelShutdown()
-        driveStraight(35, 430, False)
+            oneWheelTurn('Right', 250, 2000, 175)
+        WheelShutdown()
+        driveStraight(20, 50, False)    
+        driveStraight(45, 380, False)
         lineDetect(15, 3, "Black", False)
         lineDetect(15, 3, "White", False)
-        driveStraight(20, 40, True)
+        driveStraight(15, 10, True)
         if (RobotName == "ASHBOT"):
-            LWheel.on_for_degrees(25, 337, True)
+            oneWheelTurn('Left', 300, 2000, 330)
         else:
-            # LWheel.on_for_degrees(25, 337, True)
-            oneWheelTurn('Left', 200, 2000, 350)
+            oneWheelTurn('Left', 300, 2000, 330)
         WheelShutdown()
-        driveStraight(-20, 40, True)
+        driveStraight(-20, 30, True)
         motorStall('A', -25, -10)
-        FrontMotor.on_for_degrees(10, 10, True)
-        # sleep(0.1)
-        # FrontMotor.on_for_degrees(10, 10)
+        FrontMotor.on_for_degrees(10, 40, True)
+        FrontMotor.off(brake=False)
         driveStraight(20, 280, True)
-        sleep(0.5)
+        sleep(0.3)
         driveStraight(-20, 90, True)
         driveStraight(20, 210, True)
         sleep(0.2)
         driveStraight(-20, 90, True)
         driveStraight(20, 220, True)
-        sleep(0.2)
+        sleep(0.1)
         driveStraight(-20, 90, True)
         driveStraight(20, 230, True)
-        sleep(0.2)
+        sleep(0.1)
 
         #####
-        # M14: Toy Factory - 30 points
+        # M??: Rechargeable Battery
         #####
         driveStraight(-20, 50, False)
-        driveStraight(-40, 170, True)
+        driveStraight(-40, 190, True)
         motorStall('D', 20, 17)
         BackMotor.off(brake=False)
-        twoWheelTurn('Right', 220, 2000, 300)
-        driveStraight(20, 180, True)
+        if (RobotName == "ASHBOT"):
+            twoWheelTurn('Right', 200, 2000, 280)
+        else:
+            twoWheelTurn('Right', 200, 2000, 355)
+        WheelShutdown()
+        twoWheelTurn('Left', 200, 2000, 35)
+        WheelShutdown()        
+        driveStraight(25, 190, False)
+        move_steering.on_for_degrees(0, 15, 100, True)
+        driveStraight(-20, 35, True)
+        WheelShutdown()
+        sleep(0.6)
         motorStall('A', 25, 10)
-        twoWheelTurn('Left', 200, 2000, 165)
+        BackMotor.off(brake=False)
+
+        #####
+        # M??: Hybrid Car
+        #####
+        if (RobotName == "ASHBOT"):
+            twoWheelTurn('Left', 200, 2000, 145)
+        else:
+            twoWheelTurn('Left', 200, 2000, 170)
+        WheelShutdown()   
         driveStraight(-20, 50, False)
-        driveStraight(-40, 400, True)
-        oneWheelTurn('Left', 200, 2000, 70)
-        BackMotor.on_for_degrees(-35, 160, True)
-        motorStall('D', 15, 10)
+        driveStraight(-45, 420, True)
+        WheelShutdown()
+        # driveStraight(20, 60, True)
+        sleep(3.0)
+        oneWheelTurn('Left', 200, 3000, 20)
+        WheelShutdown()
+        sleep(2.0)
+        BackMotor.on_for_degrees(-65, 130, True)
+        BackMotorShutdown()
+        sleep(0.2)
+        BackMotor.on_for_degrees(30, 130, True)
+        BackMotor.off(brake=False)
+
+        #####
+        # M??: Smart Grid
+        #####
+        oneWheelTurn('Right', 300, 2000, 260)
+        WheelShutdown()
+        driveStraight(-20, 50, False)
+        driveStraight(-45, 700, True)
+        lineDetect(-15, 2, "White", False)
+        lineDetect(-15, 2, "Black", True)
+        WheelShutdown()
+        driveStraight(20, 20, True)
+        twoWheelTurn('Left', 250, 2000, 125)
+        WheelShutdown()
+        driveStraight(20, 65, True)
+        sleep(2.0)
+        lineSquare(15, 'Black', 'Right', 0.3)
+        WheelShutdown()
+        lineSquare(15, 'White', 'Left', 0.2)
+        WheelShutdown()
+        lineSquare(-12, 'Black', 'Right', 0.2)
+        WheelShutdown()
+        driveStraight(-20, 140, True)
+        WheelShutdown()
+        if (RobotName == "ASHBOT"):
+            twoWheelTurn('Left', 200, 3000, 333)
+        else:
+            twoWheelTurn('Left', 280, 2500, 333)
+        WheelShutdown()
+        motorStall('D', 10, 8)
+        BackMotor.off(brake=False)
+        sleep(2.0)
+        BackMotor.on_for_degrees(-10, 30, True)
+        sleep(2.0)
+        move_steering.on_for_degrees(0, -10, 130, True)
+        WheelShutdown()
+        sleep(2.0)
+        driveStraight(20, 30, True)
+        WheelShutdown()
+        BackMotor.on_for_degrees(-10, 20, True)
+        driveStraight(-20, 50, True)
+        sleep(3.0)
+        # BackMotor.on_for_degrees(10, 45, True)
+        BackMotor.on_for_degrees(10, 40, True)
+        BackMotor.off(brake=False)
+        sleep(3.0)
+        driveStraight(15, 70, True)
+        sleep(3.0)
+        BackMotor.on_for_degrees(-10, 40, True)
+        sleep(3.0)
+        driveStraight(15, 20, True)
+        WheelShutdown()
+        sleep(3.0)
+        BackMotor.on_for_degrees(10, 40, True)
+        BackMotor.off(brake=False)
+        sleep(3.0)
+        driveStraight(-15, 15, True)
+        sleep(3.0)
+        driveStraight(20, 50, False)
+        driveStraight(50, 650, True)
+        motorStall('A', -25, -10)
+        FrontMotor.on_for_degrees(10, 30, True)
+        FrontMotor.off(brake=False)
+        lineSquare(15, 'White', 'Right', 0.2)
+        lineSquare(15, 'Black', 'Left', 0.2)
+        lineSquare(-15, 'White', 'Right', 0.2)
+        driveStraight(-20, 100, True)
+        driveStraight(20, 50, True)
+        sleep(2.0)
+        FrontMotor.on_for_degrees(100, 85, True)
+        driveStraight(20, 55, True)        
+        sleep(2.0)
+        FrontMotor.on_for_degrees(-50, 80, True)
+        FrontMotor.off(brake=False)
 
 
         '''
@@ -263,7 +361,7 @@ def Run1(state):
 
         while True:
             if btn.any():
-                sound.beep()
+                sound.play_note("E4", 0.25)
                 print("Run Abort button pressed", file=sys.stderr)  
                 t.terminate()
                 WheelShutdown()
@@ -279,7 +377,7 @@ def Run1(state):
 def Run2(state):
     if state:
         print("Run2 button pressed", file=sys.stderr)  
-        sound.beep()
+        sound.play_note("E4", 0.25)
         # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
         lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
         lcd.text_pixels("RUN 2", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
@@ -306,7 +404,7 @@ def Run2(state):
 def Run3(state):
     if state:
         print("Run3 button pressed", file=sys.stderr)  
-        sound.beep()
+        sound.play_note("E4", 0.25)
         # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
         lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
         lcd.text_pixels("RUN 3", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
@@ -333,7 +431,7 @@ def Run3(state):
 def Run4(state):
     if state:
         print("Run4 button pressed", file=sys.stderr)  
-        sound.beep()
+        sound.play_note("E4", 0.25)
         # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
         lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
         lcd.text_pixels("RUN 4", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)
@@ -360,7 +458,7 @@ def Run4(state):
 def Run5(state):
     if state:
         print("Run5 button pressed", file=sys.stderr)  
-        sound.beep()
+        sound.play_note("E4", 0.25)
         # Clear the first 2 rows of text on the LCD screen using the lcd.rectangle function
         lcd.rectangle(False, x1=0, y1=0, x2=177, y2=39, fill_color='white',outline_color='white')
         lcd.text_pixels("RUN 5", clear_screen=False, x=0, y=0, text_color='black', font=DisplayFont)

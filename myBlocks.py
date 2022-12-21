@@ -47,7 +47,7 @@ def FrontMotorSetup():
 
 # Set values for BackMotor
 def BackMotorSetup():
-	BackMotor.stop_action = 'brake'
+	BackMotor.stop_action = 'hold'
 
 
 # Function to stop the wheels turning after any driving command 
