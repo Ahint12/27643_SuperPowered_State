@@ -21,5 +21,6 @@ def runSelected():
         # WheelShutdown()
         # move_steering.on_for_degrees(0, -10, 150, True)
         # WheelShutdown()
-        sound.play_note("E4", 0.25)
-        
+        motorStall('A', 15, 10)
+        motorStall('D', -10, -7)
+        BackMotorShutdown()
