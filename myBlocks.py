@@ -250,7 +250,7 @@ def PLF_Degrees3(LineFollowerPort, BlackLineSide, Degrees, StopAtEnd):
 
 
 # Low speed Proportional Line Follower, stop driving when the other Color Sensor finds the requested Line Color
-def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
+def PLF_LineDetect1(LineFollowerPort, BlackLineSide, FindBlackOrWhite, StopAtEnd):
 
     # Reset the degrees on both LargeMotors to 0 
     LWheel.position = 0
@@ -264,16 +264,26 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide, StopAtEnd):
     if (LineFollowerPort == 3):
         # Stop when Left Color Sensor sees Black
         LineDetectPort = 2
-        while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
-            steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
-            move_steering.on(steering, 20)
-
+        if (FindBlackOrWhite == 'Black'):
+            while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
+                steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 20)
+        elif (FindBlackOrWhite == 'White'):
+            while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
+                steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 20)
+            
     elif (LineFollowerPort == 2):
         # Stop when Right Color Sensor sees Black
         LineDetectPort = 3
-        while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
-            steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
-            move_steering.on(steering, 20)
+        if (FindBlackOrWhite == 'Black'):
+            while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
+                steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 20)
+        elif (FindBlackOrWhite == 'White'):
+            while (RColor.reflected_light_intensity <= RightWhiteThresholdValue):
+                steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 20)
 
     if (StopAtEnd):
         WheelShutdown()
