@@ -83,7 +83,7 @@ def Run1_Thread():
         sleep(0.1)
 
         #####
-        # M??: Rechargeable Battery
+        # M15: Rechargeable Battery
         #####
         driveStraight(-20, 50, False)
         driveStraight(-40, 190, True)
@@ -151,7 +151,7 @@ def Run1_Thread():
         driveStraight(-15, 90, True)
 
         #####
-        # M??: Power Plant
+        # M10: Power Plant
         #####
         run1C = Thread(target=Trun1C)
         run1C.start()
@@ -253,56 +253,22 @@ def Run3_Thread():
 
         
 def Trun4A():
-    motorStall('A', -15, -7)
-    motorStall('D', -10, -7)
-    BackMotor.on_for_degrees(10, 60)
-    BackMotorShutdown()
+    motorStall('A', 15, 7)
 
 def Run4_Thread():
     if (True):
 
         #########################################################
-        # RUN 4: ?? Points
+        # RUN 4: 0 Points
         #########################################################
 
-        #####
-        # M02: Oil Platform - Pump the Oil - 15 Points for 3 Fuel Units in the Fuel Truck
-        #####
         run4A = Thread(target=Trun4A)
         run4A.start()
-        move_steering.on_for_degrees(0, 30, 180)    
-        turnLineDetect('B', 25, 2, 'Black', True)
-        turnLineDetect('C', 15, 2, 'Black', False)
-        turnLineDetect('C', 15, 2, 'White', True)
-        PLF_Degrees1(2, -1, 500, False)
-        PLF_LineDetect1(2, -1, True)
-        RWheel.on_for_degrees(20, 340)
-        RWheelShutdown()
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
+        driveStraight(30, 510, True)
+        motorStall('A', -15, -7)
         FrontMotorShutdown()
-
-        #####
-        # M03: Energy Storage - 35 points - 10 x 3 energy units + 5 points for removing tray
-        #####
-        lineSquare(-15, "Black", "Left", 0.2)
-        lineSquare(-15, "White", "Left", 0.2)
-        driveStraight(-15, 20, True)
-        RWheel.on_for_degrees(20, 180)
-        RWheelShutdown()
-        driveStraight(20, 55, True)
-        RWheel.on_for_degrees(20, 185)
-        RWheelShutdown()
-        driveStraight(-20, 90, True)
-        BackMotor.on_for_degrees(-20, 37)
-        BackMotorShutdown()
-        move_steering.on_for_degrees(12, 80, 1900)
-        WheelShutdown()
-
+        move_steering.on_for_degrees(-7, -20, 50)
+        move_steering.on_for_degrees(-16, -60, 600)
         # Return to masterProgram(), reset display
         PrintRunNumbersToDisplay()
 
