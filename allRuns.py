@@ -52,38 +52,50 @@ def Run1_Thread():
         run1B = Thread(target=Trun1B)
         run1B.start()
         if (RobotName == "ASHBOT"):
-            oneWheelTurn('Right', 250, 2000, 215)
+            oneWheelTurn('Right', 250, 2000, 225)
         else:
             oneWheelTurn('Right', 250, 2000, 175)
         WheelShutdown()
         driveStraight(20, 50, False)    
         driveStraight(45, 380, False)
         lineDetect(15, 3, "Black", False)
-        lineDetect(15, 3, "White", False)
-        driveStraight(15, 10, True)
+        lineDetect(15, 3, "White", True)
+        # driveStraight(15, 10, True)
         if (RobotName == "ASHBOT"):
             oneWheelTurn('Left', 300, 2000, 330)
         else:
             oneWheelTurn('Left', 300, 2000, 330)
         WheelShutdown()
-        driveStraight(-20, 30, True)
+        driveStraight(-20, 60, True)
         motorStall('A', -25, -10)
         FrontMotor.on_for_degrees(10, 40, True)
         FrontMotor.off(brake=False)
-        driveStraight(20, 280, True)
+        driveStraight(20, 330, True)
         sleep(0.3)
-        driveStraight(-20, 90, True)
-        driveStraight(20, 210, True)
-        sleep(0.2)
-        driveStraight(-20, 90, True)
-        driveStraight(20, 220, True)
+        driveStraight(-20, 150, True)
+        move_tank.on_for_degrees(20, -20, 50)
+        WheelShutdown()
+        move_tank.on_for_degrees(-15, 15, 50)
+        WheelShutdown()
+        driveStraight(20, 300, True)
         sleep(0.1)
-        driveStraight(-20, 90, True)
-        driveStraight(20, 230, True)
+        driveStraight(-20, 150, True)
+        move_tank.on_for_degrees(20, -20, 50)
+        WheelShutdown()
+        move_tank.on_for_degrees(-15, 15, 50)
+        WheelShutdown()
+        driveStraight(20, 300, True)
+        sleep(0.1)
+        driveStraight(-20, 150, True)
+        move_tank.on_for_degrees(20, -20, 50)
+        WheelShutdown()
+        move_tank.on_for_degrees(-15, 15, 50)
+        WheelShutdown()
+        driveStraight(20, 300, True)
         sleep(0.1)
 
         #####
-        # M??: Rechargeable Battery
+        # M15: Rechargeable Battery
         #####
         driveStraight(-20, 50, False)
         driveStraight(-40, 190, True)
@@ -108,7 +120,7 @@ def Run1_Thread():
         # M06: Hybrid Car
         #####
         if (RobotName == "ASHBOT"):
-            twoWheelTurn('Left', 200, 2000, 105)
+            twoWheelTurn('Left', 200, 2000, 95)
         else:
             twoWheelTurn('Left', 200, 2000, 170)
         WheelShutdown()   
@@ -405,25 +417,10 @@ def Run4_Thread():
         # OLD RUN 4
         #########################################################
 
-        #####
-        # M02: Oil Platform - Pump the Oil - 15 Points for 3 Fuel Units in the Fuel Truck
-        #####
         run4A = Thread(target=Trun4A)
         run4A.start()
-        move_steering.on_for_degrees(0, 30, 180)    
-        turnLineDetect('B', 25, 2, 'Black', True)
-        turnLineDetect('C', 15, 2, 'Black', False)
-        turnLineDetect('C', 15, 2, 'White', True)
-        PLF_Degrees1(2, -1, 500, False)
-        PLF_LineDetect1(2, -1, True)
-        RWheel.on_for_degrees(20, 340)
-        RWheelShutdown()
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
-        FrontMotor.on_for_degrees(25, 100)
-        FrontMotor.on_for_degrees(-25, 100)
+        driveStraight(30, 510, True)
+        motorStall('A', -15, -7)
         FrontMotorShutdown()
 
         #####

@@ -15,8 +15,8 @@ from myBlocks import *
     
 def runSelected():
 
-    if (True):        
-        # Start coding your Run here
+    if (True):
+        # Start coding your run here
         print("Starting runSelected()", file=sys.stderr)
 
 
@@ -73,23 +73,16 @@ def runSelected():
         lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        oneWheelTurn('Left', 170, 2000, 338)
-        driveStraight(40, 182, True)
-        oneWheelTurn('Right', 170, 3500, 162)
-        driveStraight(35, 280, True)
-        twoWheelTurn('Right', 170, 3500, 75)
-        driveStraight(35, 150, True)
-        lineSquare(15, 'Black', 'Right', 0.3)
-        lineSquare(15, 'White', 'Left', 0.2)
-        lineSquare(-15, 'Black', 'Right', 0.15)
+        driveStraight(20, 300, True)
+        sleep(0.3)
+        driveStraight(-20, 140, True)
+        move_tank.on_for_degrees(30, -30, 50)
         WheelShutdown()
-        oneWheelTurn('Right', 170, 3500, 45)
-        driveStraight(35, 240, True)
-        oneWheelTurn('Right', 170, 3500, 260)
+        move_tank.on_for_degrees(-20, 20, 50)
         WheelShutdown()
-        driveStraight(35, 215, True)
-        oneWheelTurn('Right', 170, 3500, 290)
-        driveStraight(80, 350, False)
-        move_steering.on_for_degrees(7, 80, 1500)
+        driveStraight(20, 300, True)
+        sleep(0.3)
+
+        driveStraight(-20, 50, False)
         WheelShutdown()
         '''
