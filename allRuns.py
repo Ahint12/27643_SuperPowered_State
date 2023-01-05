@@ -208,33 +208,158 @@ def Run1_Thread():
         '''
         # Return to masterProgram()
 
+def Trun2A():
+    motorStall('A', 10, 5)
         
+def Trun2B():
+    motorStall('A', -10, -5)
 
 def Run2_Thread():
     if (True):
+
+        #########################################################
+        # RUN 2: ?? Points
+        #########################################################
+
+        #####
+        # M08: Watch Television - 20 points
+        #####
+        run2A = Thread(target=Trun2A)
+        run2A.start()
+        driveStraight(20, 50, False )
+        driveStraight(45, 370, False)
+        driveStraight(20, 110, True)
+
+        #####
+        # M07: Wind Turbine - 30 points
+        #####
+        driveStraight(-20, 30, False)
+        driveStraight(-35, 120, False)
+        driveStraight(-20, 30, True)
+        RWheel.on_for_degrees(25, 205)
+        RWheelShutdown()
+        driveStraight(20, 50, False)
+        driveStraight(40, 350, False)
+        lineDetect(15, 3, "Black", False)
+        lineDetect(15, 3, "White", True)
+        LWheel.on_for_degrees(25, 360)
+        LWheelShutdown()
+        driveStraight(20, 220, True)
+        sleep(0.1)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 210, True)
+        sleep(0.1)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 220, True)
+        sleep(0.1)
+        driveStraight(-20, 90, True)
+        driveStraight(20, 230, True)
+        sleep(0.1)
+
+        #####
+        # M14: Toy Factory - 30 points
+        #####
+        driveStraight(-20, 290, False)
+        driveStraight(-10, 50, True)
+        sleep(0.5)
+        driveStraight(20, 80, True)
+        LWheel.on_for_degrees(-20, 190, True)
+        LWheelShutdown()
+        RWheel.on_for_degrees(20, 350, True)
+        RWheelShutdown()
+        driveStraight(25, 230, True)
+        lineSquare(12, 'Black', 'Left', 0.2)
+        run2B = Thread(target=Trun2B)
+        run2B.start()
+        lineSquare(-15, 'White', 'Right', 0.2)
+        LWheel.on_for_degrees(20, 230, True)
+        LWheelShutdown()
+        FrontMotor.on_for_degrees(27, 100, True)
+        LWheel.on_for_degrees(-20, 35, True)
+        LWheelShutdown()
+        driveStraight(-20, 50, False)
+        driveStraight(-80, 1500, True)
+
+
+        # RWheel.on_for_degrees(25, 140)
+        # RWheelShutdown()
+        # LWheel.on_for_degrees(-25, 150)  
+        # LWheelShutdown()
+        # driveStraight(-70, 1050, True)
+
         BackMotor.off(brake=False)
         # Return to masterProgram()
 
 
 def Trun3A():
+    motorStall('D', 10, 7)
+    BackMotor.on_for_degrees(-10, 10, True)
+    BackMotor.off(brake=False)
+
+def Trun3B():
+        motorStall('D', -30, -10)        
+
+def Run3_Thread():
+    if (True):
+
+        run3A = Thread(target=Trun3A)
+        run3A.start()
+        driveStraight(20, 90, True)
+        oneWheelTurn('Right', 220, 2500, 205)
+        WheelShutdown()
+        driveStraight(20, 50, False)
+        driveStraight(40, 50, False)
+        driveStraight(60, 1050, True)
+        WheelShutdown()
+        sleep(0.2)
+        BackMotor.on_for_degrees(-15, 110, True)
+        turnLineDetect('C', 15, 3, 'White', False)
+        turnLineDetect('C', 15, 3, 'Black', True)
+        PLF_LineDetect1(3, 1, 'Black', True)
+        oneWheelTurn('Right', 220, 2500, 100)
+        driveStraight(30, 200, True)
+        oneWheelTurn('Left', 220, 2500, 440)
+        lineSquare(-15, 'Black', 'Left', 0.2)
+        lineSquare(15, 'White', 'Right', 0.1)
+        oneWheelTurn('Right', 170, 3500, 45)
+        driveStraight(35, 240, True)
+        oneWheelTurn('Right', 170, 3500, 260)
+        WheelShutdown()
+        driveStraight(35, 200, True)
+        oneWheelTurn('Right', 170, 3500, 295)
+        driveStraight(80, 1800, True)
+        WheelShutdown()
+        
+        # Return to masterProgram()
+
+
+def Trun4A():
     motorStall('A', 6, 4)
     motorStall('D', -15, -10)
     BackMotorShutdown()
 
-def Trun3B():
+def Trun4B():
     motorStall('A', 15, 8)
     motorStall('D', 10, 7)
     BackMotor.on_for_degrees(-10, 20, False)
+    BackMotorShutdown()
 
-def Run3_Thread():
-    if (True):
         
+def Trun4Z():
+    motorStall('A', -15, -7)
+    motorStall('D', -10, -7)
+    BackMotor.on_for_degrees(10, 60)
+    BackMotor.off(brake=False)
+
+def Run4_Thread():
+    if (True):
+
         #########################################################
-        # RUN 3: ?? Points
+        # NEW RUN 4
         #########################################################
 
-        run3A = Thread(target=Trun3A)
-        run3A.start()
+        run4A = Thread(target=Trun4A)
+        run4A.start()
         # move_steering.on_for_degrees(0, 30, 180) 
         driveStraight(30, 200, True)
         turnLineDetect('B', 25, 2, 'Black', True)
@@ -246,49 +371,38 @@ def Run3_Thread():
         oneWheelTurn('Right', 200, 2000, 50)
         driveStraight(20, 40, True)
         FrontMotor.on_for_degrees(-8, 70, True)
-        FrontMotor.off(brake=False)
-        run3B = Thread(target=Trun3B)
-        run3B.start()
+        FrontMotor.off(False)
+        run4B = Thread(target=Trun4B)
+        run4B.start()
         move_steering.on_for_degrees(0, 20, 300)
         WheelShutdown()
-        BackMotor.on_for_degrees(-20, 60, True)
+        BackMotor.on_for_degrees(-20, 55, True)
         BackMotorShutdown()
-        BackMotor.on_for_degrees(30, 60, True)
-        BackMotorShutdown()
-        sleep(0.2)
-        BackMotor.on_for_degrees(-25, 60, True)
-        BackMotorShutdown()
-        BackMotor.on_for_degrees(30, 60, True)
+        BackMotor.on_for_degrees(30, 55, True)
         BackMotorShutdown()
         sleep(0.2)
-        BackMotor.on_for_degrees(-25, 60, True)
+        BackMotor.on_for_degrees(-25, 55, True)
         BackMotorShutdown()
-        BackMotor.on_for_degrees(30, 60, True)
+        BackMotor.on_for_degrees(30, 55, True)
+        BackMotorShutdown()
+        sleep(0.2)
+        BackMotor.on_for_degrees(-25, 55, True)
+        BackMotorShutdown()
+        BackMotor.on_for_degrees(30, 55, True)
         BackMotorShutdown()
         driveStraight(-20, 50, False)
-        driveStraight(-30, 270, True)
+        driveStraight(-30, 260, True)
         RWheel.on_for_degrees(20, 20, True)
         WheelShutdown()
         motorStall('A', -15, -8)
         move_steering.on_for_degrees(-12, -20, 50, brake=False)
         move_steering.on_for_degrees(-16, -50, 400, brake=False)
-        driveStraight(-80, 1000, True)
+        driveStraight(-85, 1000, True)
+        WheelShutdown()
 
-
-        # Return to masterProgram()
-
-        
-def Trun4A():
-    motorStall('A', -15, -7)
-    motorStall('D', -10, -7)
-    BackMotor.on_for_degrees(10, 60)
-    BackMotorShutdown()
-
-def Run4_Thread():
-    if (True):
-
+        '''
         #########################################################
-        # RUN 4: ?? Points
+        # OLD RUN 4
         #########################################################
 
         #####
@@ -328,9 +442,9 @@ def Run4_Thread():
         BackMotorShutdown()
         move_steering.on_for_degrees(12, 80, 1900)
         WheelShutdown()
+        '''
 
-        # Return to masterProgram(), reset display
-        PrintRunNumbersToDisplay()
+        # Return to masterProgram()
 
 
 def Trun5A():

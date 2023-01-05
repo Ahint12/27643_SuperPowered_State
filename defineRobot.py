@@ -79,9 +79,9 @@ Bot2_Kg = [3,3,3,3,3]
 
 # For each Bot, define Color Sensor Threshhold Values
 # ASHBOT
-LeftBlackThresholdValue = 10
+LeftBlackThresholdValue = 14
 LeftWhiteThresholdValue = 60
-RightBlackThresholdValue = 10
+RightBlackThresholdValue = 14
 RightWhiteThresholdValue = 60
 
 # NIKBOT
