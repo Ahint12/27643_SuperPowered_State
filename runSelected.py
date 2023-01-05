@@ -11,15 +11,40 @@ from defineRobot import *
 from myBlocks import *
 
 
-
+def Trun6A():
+    motorStall('A', 15, 10)
     
+def Trun6B():
+    motorStall('A', -20, -10)
+
 def runSelected():
 
     if (True):
         # Start coding your run here
         print("Starting runSelected()", file=sys.stderr)
 
+        run6A = Thread(target=Trun6A)
+        run6A.start()
+        driveStraight(20, 50, False)
+        driveStraight(35, 310, True)
+        motorStall('A', -20, -10)
+        # driveStraight(-5, 20, True)
+        driveStraight(10, 50, False)
+        driveStraight(-10, 20, True)
+        FrontMotor.on_for_degrees(12, 100)
+        FrontMotor.on_for_degrees(-20, 100)
+        FrontMotorShutdown
+        # driveStraight(-25, 100, True)
+        # twoWheelTurn('Right', 200, 2000, 95)
 
+
+
+
+
+
+
+
+        '''
         motorStall('D', 10, 7)
         BackMotor.on_for_degrees(-10, 20, False)
         BackMotorShutdown()
@@ -41,7 +66,7 @@ def runSelected():
 
 
 
-        '''
+        
         driveStraight(20, 80, True)
         LWheel.on_for_degrees(-20, 190, True)
         LWheelShutdown()
