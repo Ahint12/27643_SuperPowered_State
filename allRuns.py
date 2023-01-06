@@ -172,8 +172,9 @@ def Run3_Thread():
         driveStraight(40, 50, False)
         driveStraight(60, 1050, True)
         WheelShutdown()
-        sleep(0.2)
+        # sleep(3.0)
         BackMotor.on_for_degrees(-15, 110, True)
+        motorStall('D', -15, -10)
         turnLineDetect('C', 15, 3, 'White', False)
         turnLineDetect('C', 15, 3, 'Black', True)
         PLF_LineDetect1(3, 1, 'Black', True)
@@ -310,7 +311,7 @@ def Run5_Thread():
         run5A.start()
         driveStraight(20, 50, False)
         driveStraight(60, 1250, True)
-        driveStraight(-30, 200, True) 
+        driveStraight(-30, 220, True) 
 
         #####
         # M12: Water Reservoir
