@@ -11,11 +11,8 @@ from defineRobot import *
 from myBlocks import *
 
 
-def Trun6A():
-    motorStall('A', 15, 10)
+
     
-def Trun6B():
-    motorStall('A', -20, -10)
 
 def runSelected():
 
@@ -26,16 +23,48 @@ def runSelected():
         run6A = Thread(target=Trun6A)
         run6A.start()
         driveStraight(20, 50, False)
-        driveStraight(35, 310, True)
+        driveStraight(35, 290, True)
         motorStall('A', -20, -10)
-        # driveStraight(-5, 20, True)
-        driveStraight(10, 50, False)
-        driveStraight(-10, 20, True)
-        FrontMotor.on_for_degrees(12, 100)
-        FrontMotor.on_for_degrees(-20, 100)
-        FrontMotorShutdown
-        # driveStraight(-25, 100, True)
-        # twoWheelTurn('Right', 200, 2000, 95)
+        driveStraight(15, 140, True)
+        WheelShutdown()
+        driveStraight(-15, 35, True)
+        FrontMotor.on_for_degrees(12, 80)
+        FrontMotorShutdown()
+        FrontMotor.on_for_degrees(-20, 80)
+        FrontMotorShutdown()
+        FrontMotor.off(False)
+        driveStraight(-25, 70, True)
+        twoWheelTurn('Right', 200, 2000, 80)
+        driveStraight(20, 50, False)
+        driveStraight(40, 50, False)
+        driveStraight(60, 800, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
+        lineSquare(15, 'White', 'Left', 0.2)
+        WheelShutdown()
+        driveStraight(20, 50, True)
+        WheelShutdown()
+        twoWheelTurn('Right', 170, 3500, 167)
+        lineSquare(15, 'White', 'Left', 0.25)
+        lineSquare(10, 'Black', 'Right', 0.2)
+        lineSquare(10, 'White', 'Left', 0.3)
+        FrontMotor.on_for_degrees(90, 50, True)
+        FrontMotor.on_for_degrees(-80, 50, True)
+        FrontMotorShutdown()
+        FrontMotor.on_for_degrees(20, 30, True)
+        driveStraight(-10, 25, True)
+        LWheel.on_for_degrees(-15, 80, True)
+        WheelShutdown()
+        FrontMotor.on_for_degrees(-35, 42, False)
+        LWheel.on_for_degrees(15, 80, True)
+        lineSquare(-10, 'White', 'Left', 0.2)
+        lineSquare(10, 'Black', 'Right', 0.2)
+        oneWheelTurn('Left', 250, 2000, -300)
+        driveStraight(20, 50, False)
+        driveStraight(45, 50, False)
+        driveStraight(85, 1600, True)
+
+
+
 
 
 

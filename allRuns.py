@@ -14,18 +14,7 @@ from myBlocks import *
 
 
 def Trun1A():
-    motorStall('A', -25, -10)
-    FrontMotor.on_for_degrees(10, 40, True)
-    FrontMotor.off(brake=False)
-    motorStall('D', -10, -8)
-
-def Trun1B():
-    motorStall('A', 25, 10)
-
-def Trun1C():
-    motorStall('A', -25, 10)
-    FrontMotor.off(brake=False)
-    motorStall('A', 25, 10)
+    motorStall('A', 15, 10)
 
 def Run1_Thread():
     if (True):
@@ -36,188 +25,48 @@ def Run1_Thread():
         # RUN 1: ?? Points
         #########################################################
 
-        #####
-        # M08: Watch Television - 20 points
-        #####
         run1A = Thread(target=Trun1A)
         run1A.start()
         driveStraight(20, 50, False)
-        driveStraight(45, 490, False)
-        driveStraight(20, 100, True)
-        
-        #####
-        # M07: Wind Turbine - 30 points
-        #####
-        driveStraight(-25, 100, True)
-        run1B = Thread(target=Trun1B)
-        run1B.start()
-        if (RobotName == "ASHBOT"):
-            oneWheelTurn('Right', 250, 2000, 225)
-        else:
-            oneWheelTurn('Right', 250, 2000, 175)
+        driveStraight(35, 290, True)
+        motorStall('A', -20, -10)
+        driveStraight(15, 140, True)
         WheelShutdown()
-        driveStraight(20, 50, False)    
-        driveStraight(45, 380, False)
-        lineDetect(15, 3, "Black", False)
-        lineDetect(15, 3, "White", True)
-        # driveStraight(15, 10, True)
-        if (RobotName == "ASHBOT"):
-            oneWheelTurn('Left', 300, 2000, 330)
-        else:
-            oneWheelTurn('Left', 300, 2000, 330)
-        WheelShutdown()
-        driveStraight(-20, 60, True)
-        motorStall('A', -25, -10)
-        FrontMotor.on_for_degrees(10, 40, True)
-        FrontMotor.off(brake=False)
-        driveStraight(20, 330, True)
-        sleep(0.3)
-        driveStraight(-20, 150, True)
-        move_tank.on_for_degrees(20, -20, 50)
-        WheelShutdown()
-        move_tank.on_for_degrees(-15, 15, 50)
-        WheelShutdown()
-        driveStraight(20, 300, True)
-        sleep(0.1)
-        driveStraight(-20, 150, True)
-        move_tank.on_for_degrees(20, -20, 50)
-        WheelShutdown()
-        move_tank.on_for_degrees(-15, 15, 50)
-        WheelShutdown()
-        driveStraight(20, 300, True)
-        sleep(0.1)
-        driveStraight(-20, 150, True)
-        move_tank.on_for_degrees(20, -20, 50)
-        WheelShutdown()
-        move_tank.on_for_degrees(-15, 15, 50)
-        WheelShutdown()
-        driveStraight(20, 300, True)
-        sleep(0.1)
-
-        #####
-        # M15: Rechargeable Battery
-        #####
-        driveStraight(-20, 50, False)
-        driveStraight(-40, 190, True)
-        motorStall('D', 20, 17)
-        BackMotor.off(brake=False)
-        if (RobotName == "ASHBOT"):
-            twoWheelTurn('Right', 200, 2000, 265)
-        else:
-            twoWheelTurn('Right', 200, 2000, 355)
-        WheelShutdown()
-        twoWheelTurn('Left', 200, 2000, 35)
-        WheelShutdown()        
-        driveStraight(25, 190, False)
-        move_steering.on_for_degrees(0, 15, 100, True)
-        driveStraight(-20, 50, True)
-        WheelShutdown()
-        sleep(0.6)
-        motorStall('A', 25, 10)
-        BackMotor.off(brake=False)
-
-        #####
-        # M06: Hybrid Car
-        #####
-        if (RobotName == "ASHBOT"):
-            twoWheelTurn('Left', 200, 2000, 95)
-        else:
-            twoWheelTurn('Left', 200, 2000, 170)
-        WheelShutdown()   
-        driveStraight(-20, 50, False)
-        driveStraight(-45, 425, True)
-        WheelShutdown()
-        # sleep(2.0)
-        oneWheelTurn('Left', 200, 3000, 20)
-        WheelShutdown()
-        # sleep(2.0)
-        BackMotor.on_for_degrees(-85, 150, True)
-        BackMotorShutdown()
-        # sleep(2.0)
-        BackMotor.on_for_degrees(30, 145, True)
-        BackMotor.off(brake=False)
-
-        #####
-        # M05: Smart Grid
-        #####
-        if (RobotName == "ASHBOT"):
-            oneWheelTurn('Right', 300, 2000, 310)
-        else:
-            oneWheelTurn('Right', 300, 2000, 270)
-        WheelShutdown()
-        driveStraight(-20, 50, False)
-        driveStraight(-50, 700, True)
-        lineDetect(-15, 2, "White", False)
-        lineDetect(-15, 2, "Black", True)
-        WheelShutdown()
-        driveStraight(20, 20, True)
-        twoWheelTurn('Left', 200, 2000, 120)
-        WheelShutdown()
-        driveStraight(20, 65, True)
-        lineSquare(15, 'Black', 'Right', 0.3)
-        WheelShutdown()
+        driveStraight(-15, 35, True)
+        FrontMotor.on_for_degrees(12, 80)
+        FrontMotorShutdown()
+        FrontMotor.on_for_degrees(-20, 80)
+        FrontMotorShutdown()
+        FrontMotor.off(False)
+        driveStraight(-25, 70, True)
+        twoWheelTurn('Right', 200, 2000, 80)
+        driveStraight(20, 50, False)
+        driveStraight(40, 50, False)
+        driveStraight(60, 800, False)
+        lineSquare(15, 'Black', 'Right', 0.2)
         lineSquare(15, 'White', 'Left', 0.2)
         WheelShutdown()
-        lineSquare(-12, 'Black', 'Right', 0.2)
-        WheelShutdown()
-        driveStraight(15, 70, True)
-        motorStall('A', -25, -10)
-        driveStraight(-15, 90, True)
-
-        #####
-        # M10: Power Plant
-        #####
-        run1C = Thread(target=Trun1C)
-        run1C.start()
-        lineSquare(-12, 'White', 'Right', 0.2)
-        WheelShutdown()
-        lineSquare(15, 'Black', 'Left', 0.2)
-        WheelShutdown()
-        lineSquare(-12, 'White', 'Right', 0.2)
-        WheelShutdown()
-        driveStraight(-20, 50, False)
-        driveStraight(-45, 400, True)
-        WheelShutdown()
-        if (RobotName == "ASHBOT"):
-            # twoWheelTurn('Right', 150, 3200, 330)
-            move_tank.on_for_degrees(12, -12, 340)
-        else:
-            twoWheelTurn('Right', 280, 2500, 333)
-        WheelShutdown()
-        motorStall('A', -25, 10)
-        FrontMotor.off(brake=False)
-        driveStraight(20, 50, False)
-        driveStraight(45, 200, True)
-        lineSquare(15, 'White', 'Right', 0.2)
-        lineSquare(15, 'Black', 'Left', 0.2)
-        lineSquare(-15, 'White', 'Right', 0.2)
-        # sleep(5.0)
-        driveStraight(-20, 100, True)
-        motorStall('A', -25, -10)
-        FrontMotor.on_for_degrees(10, 30, True)
-        FrontMotor.off(brake=False)
         driveStraight(20, 50, True)
-        # sleep(2.0)
-        FrontMotor.on_for_degrees(100, 85, True)
-        driveStraight(20, 55, True)        
-        # sleep(2.0)
-        FrontMotor.on_for_degrees(-50, 120, True)
-        FrontMotor.off(brake=False)
-        driveStraight(-15, 100, True)
-        twoWheelTurn('Left', 280, 2500, 140)
-        driveStraight(25, 50, False)
-        driveStraight(80, 1700, True)
-
-
-        '''
-        driveStraight(-15, 50, True)
-        sleep(0.5)
-        RWheel.on_for_degrees(25, 140)
-        RWheelShutdown()
-        LWheel.on_for_degrees(-25, 150)  
-        LWheelShutdown()
-        driveStraight(-70, 1050, True)
-        '''
+        WheelShutdown()
+        twoWheelTurn('Right', 170, 3500, 167)
+        lineSquare(15, 'White', 'Left', 0.25)
+        lineSquare(10, 'Black', 'Right', 0.2)
+        lineSquare(10, 'White', 'Left', 0.3)
+        FrontMotor.on_for_degrees(90, 50, True)
+        FrontMotor.on_for_degrees(-80, 50, True)
+        FrontMotorShutdown()
+        FrontMotor.on_for_degrees(20, 30, True)
+        driveStraight(-10, 25, True)
+        LWheel.on_for_degrees(-15, 80, True)
+        WheelShutdown()
+        FrontMotor.on_for_degrees(-35, 42, False)
+        LWheel.on_for_degrees(15, 80, True)
+        lineSquare(-10, 'White', 'Left', 0.2)
+        lineSquare(10, 'Black', 'Right', 0.2)
+        oneWheelTurn('Left', 250, 2000, -300)
+        driveStraight(20, 50, False)
+        driveStraight(45, 50, False)
+        driveStraight(85, 1600, True)
         # Return to masterProgram()
 
 def Trun2A():
@@ -459,16 +308,17 @@ def Run5_Thread():
         #####
         run5A = Thread(target=Trun5A)
         run5A.start()
-        driveStraight(45, 1300, True)
-        driveStraight(-30, 300, True) 
+        driveStraight(20, 50, False)
+        driveStraight(60, 1250, True)
+        driveStraight(-30, 200, True) 
 
         #####
         # M12: Water Reservoir
         #####
-        move_tank.on_for_degrees(-15, 15, 165, True)
+        move_tank.on_for_degrees(-15, 15, 170, True)
         WheelShutdown()
         driveStraight(30, 110, True)
-        driveStraight(-20, 50, True)
+        driveStraight(-20, 120, True)
         FrontMotor.on_for_degrees(-10, 100)
         FrontMotorShutdown()
         driveStraight(-30, 250, True)
@@ -478,7 +328,6 @@ def Run5_Thread():
         sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
 
         # Return to masterProgram(), reset display
-        PrintRunNumbersToDisplay()
 
 
 def Run1(state):
