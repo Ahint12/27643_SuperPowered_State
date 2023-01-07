@@ -158,39 +158,58 @@ def Trun3A():
     BackMotor.off(brake=False)
 
 def Trun3B():
-        motorStall('D', -30, -10)        
+    motorStall('D', -10, -7)
+
+def Trun3C():
+    BackMotor.on_for_degrees(15, 45, True)
+
+def Trun3D():
+    motorStall('D', -15, -10)
 
 def Run3_Thread():
     if (True):
 
         run3A = Thread(target=Trun3A)
         run3A.start()
-        driveStraight(20, 90, True)
+        driveStraight(20, 130, True)
         oneWheelTurn('Right', 220, 2500, 205)
         WheelShutdown()
         driveStraight(20, 50, False)
         driveStraight(40, 50, False)
         driveStraight(60, 1050, True)
         WheelShutdown()
-        # sleep(3.0)
         BackMotor.on_for_degrees(-15, 110, True)
-        motorStall('D', -15, -10)
+        BackMotorShutdown()
+        # run3B = Thread(target=Trun3B)
+        # run3B.start()
         turnLineDetect('C', 15, 3, 'White', False)
         turnLineDetect('C', 15, 3, 'Black', True)
+        RWheel.on_for_degrees(15, 40, True)
         PLF_LineDetect1(3, 1, 'Black', True)
-        oneWheelTurn('Right', 220, 2500, 100)
-        driveStraight(30, 200, True)
-        oneWheelTurn('Left', 220, 2500, 440)
-        lineSquare(-15, 'Black', 'Left', 0.2)
+        run3C = Thread(target=Trun3C)
+        run3C.start()
+        oneWheelTurn('Right', 200, 2000, 350)
+        driveStraight(-10, 20, True)
+        motorStall('D', 15, 10)
+        driveStraight(20, 55, True)
+        run3D = Thread(target=Trun3D)
+        run3D.start()        
+        driveStraight(20, 120, True)
+        twoWheelTurn('Right', 200, 2000, 190)
+        driveStraight(20, 150, True)
+        oneWheelTurn('Left', 200, 2000, 270)
+        driveStraight(30, 80, True)
+        lineSquare(15, 'Black', 'Left', 0.2)
         lineSquare(15, 'White', 'Right', 0.1)
         oneWheelTurn('Right', 170, 3500, 45)
-        driveStraight(35, 240, True)
+        driveStraight(35, 200, True)
         oneWheelTurn('Right', 170, 3500, 260)
         WheelShutdown()
         driveStraight(35, 200, True)
         oneWheelTurn('Right', 170, 3500, 295)
         driveStraight(80, 1800, True)
         WheelShutdown()
+        
         
         # Return to masterProgram()
 
@@ -325,8 +344,8 @@ def Run5_Thread():
         driveStraight(-30, 250, True)
 
         sound.set_volume(pct=100)
-        # sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
-        sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
+        sound.play_file('/home/robot/sounds/NeverGonnaGive.wav', volume=100)
+        # sound.play_file('/home/robot/sounds/fanfare.wav', volume=100)
 
         # Return to masterProgram(), reset display
 
