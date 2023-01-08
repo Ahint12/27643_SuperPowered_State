@@ -20,6 +20,4 @@ def runSelected():
         # Start coding your run here
         print("Starting runSelected()", file=sys.stderr)
 
-        BackMotor.on_for_degrees(-15, 110, True)
-        BackMotorShutdown()
-        motorStall('D', -10, -7)        
+        driveStraight(-25, 340, True)
