@@ -289,6 +289,46 @@ def PLF_LineDetect1(LineFollowerPort, BlackLineSide, FindBlackOrWhite, StopAtEnd
         WheelShutdown()
   
 
+# Low speed Proportional Line Follower, stop driving when the other Color Sensor finds the requested Line Color
+def PLF_LineDetect2(LineFollowerPort, BlackLineSide, FindBlackOrWhite, StopAtEnd):
+
+    # Reset the degrees on both LargeMotors to 0 
+    LWheel.position = 0
+    RWheel.position = 0
+    LColor_threshold_midpoint = (LeftBlackThresholdValue + LeftWhiteThresholdValue) / 2
+    RColor_threshold_midpoint = (RightBlackThresholdValue + RightWhiteThresholdValue) / 2
+
+    # Proportional value for the LineFollower 
+    Klf = -0.5           
+
+    if (LineFollowerPort == 3):
+        # Stop when Left Color Sensor sees Black
+        LineDetectPort = 2
+        if (FindBlackOrWhite == 'Black'):
+            while (LColor.reflected_light_intensity >= LeftBlackThresholdValue):
+                steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 25)
+        elif (FindBlackOrWhite == 'White'):
+            while (LColor.reflected_light_intensity <= LeftWhiteThresholdValue):
+                steering = BlackLineSide * (RColor.reflected_light_intensity - RColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 25)
+            
+    elif (LineFollowerPort == 2):
+        # Stop when Right Color Sensor sees Black
+        LineDetectPort = 3
+        if (FindBlackOrWhite == 'Black'):
+            while (RColor.reflected_light_intensity >= RightBlackThresholdValue):
+                steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 25)
+        elif (FindBlackOrWhite == 'White'):
+            while (RColor.reflected_light_intensity <= RightWhiteThresholdValue):
+                steering = BlackLineSide * (LColor.reflected_light_intensity - LColor_threshold_midpoint) * Klf
+                move_steering.on(steering, 25)
+
+    if (StopAtEnd):
+        WheelShutdown()
+
+
 # Run the requested motor as far as it will go, stop the motor when it cannot move any more
 def motorStall(MotorPort, Speed, StallSpeed):
 

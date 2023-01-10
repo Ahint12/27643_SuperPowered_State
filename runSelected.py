@@ -20,4 +20,13 @@ def runSelected():
         # Start coding your run here
         print("Starting runSelected()", file=sys.stderr)
 
-        driveStraight(-25, 340, True)
+        motorStall('A', -15, -10)
+        FrontMotor.off(brake = False)
+        sleep(1.0)
+        LWheel.on_for_degrees(15, 60, True)
+        sleep(1.0)
+        LWheel.on_for_degrees(-15, 60, True)
+        sleep(1.0)
+        FrontMotor.on_for_degrees(26, 100, True)
+        sleep(1.0)
+        FrontMotor.off(brake = False)

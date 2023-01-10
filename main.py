@@ -42,7 +42,7 @@ def main():
     FrontMotorSetup()
     BackMotorSetup()
 
-    # Always have exactly ONE of the next two lines uncommented OR ELSE the bot will do nothing.s
+    # Always have exactly ONE of the next two lines uncommented OR ELSE the bot will do nothing.
     # runSelected()   # Uncomment this line when you only want to work on your Run without using the MasterProgram
     masterProgram()  # Uncomment this line when you want to run MasterProgram
 
